@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react'
+import colorData from './colorData.json'
+import { Wrapper, Color } from './styles/app'
 
-function App() {
+const App = () => {
+
+  const [colors, setColors] = useState(colorData)
+
+  const filterColor = (e) => {
+    const value = e.target.value;
+    if ( e && e.keyCode === 8 ) {
+      setColors(colorData)
+    } else {
+    value ? setColors(colors.filter(color => color.toLowerCase().includes(value))) : setColors(colorData)
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    <Wrapper>
+      <header>CP Color Searcher Challenge</header>
+      <input
+      type="text"
+      onKeyUp={filterColor}
+      // onChange={filterColor}
+      />
+      <main>
+        {colors.map(color => (
+          <Color key={color} bg={color}></Color>
+        ))}
+      </main>
+    </Wrapper>
   );
 }
 
