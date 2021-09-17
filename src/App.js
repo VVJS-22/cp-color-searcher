@@ -8,7 +8,7 @@ const App = () => {
   const [value, setValue] = useState("")
 
   useEffect(() => {
-    setColors(colorData.filter(color => color.toLowerCase().includes(value)))
+    setColors(colorData.filter(color => color.toLowerCase().includes(value.toLowerCase())))
   }, [value])
 
   const filterColor = (e) => {
@@ -19,12 +19,11 @@ const App = () => {
 
     <Wrapper>
       <header>CP Color Searcher Challenge</header>
+      <p>{colors}</p>
       <input 
       type="text"
       value = {value}
-      // onKeyUp={filterColor}
       onChange={filterColor}
-      // onInput={filterColor}
       />
       <main>
         {colors.map(color => (

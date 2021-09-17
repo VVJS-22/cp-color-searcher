@@ -14,7 +14,6 @@ export const Wrapper = styled.section`
     border: 5px ridge rgb(10, 107, 34);
     font-size: 1.5rem;
     padding-left: 0.5rem;
-    text-transform: capitalize;
     box-sizing: border-box;
   }
   main {
