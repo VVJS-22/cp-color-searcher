@@ -1,28 +1,30 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import colorData from './colorData.json'
 import { Wrapper, Color } from './styles/app'
 
 const App = () => {
 
   const [colors, setColors] = useState(colorData)
+  const [value, setValue] = useState("")
+
+  useEffect(() => {
+    setColors(colorData.filter(color => color.toLowerCase().includes(value)))
+  }, [value])
 
   const filterColor = (e) => {
-    const value = e.target.value;
-    if ( e && e.keyCode === 8 ) {
-      setColors(colorData)
-    } else {
-    value ? setColors(colors.filter(color => color.toLowerCase().includes(value))) : setColors(colorData)
-    }
+    setValue(e.target.value)
   }
 
   return (
 
     <Wrapper>
       <header>CP Color Searcher Challenge</header>
-      <input
+      <input 
       type="text"
-      onKeyUp={filterColor}
-      // onChange={filterColor}
+      value = {value}
+      // onKeyUp={filterColor}
+      onChange={filterColor}
+      // onInput={filterColor}
       />
       <main>
         {colors.map(color => (
