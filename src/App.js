@@ -19,7 +19,6 @@ const App = () => {
 
     <Wrapper>
       <header>CP Color Searcher Challenge</header>
-      <p>{colors}</p>
       <input 
       type="text"
       value = {value}
